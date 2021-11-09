@@ -1,0 +1,145 @@
+# Placing an Order
+
+A sales order can be created by providing data as shown on the right. Details about each
+parameter can be found as follow;
+
+<aside class="notice">
+  You must replace <code>api_key</code> with your personal API key.
+</aside>
+
+```json
+
+{
+  "api_key": "string",
+  "order": {
+    "order_id": "string",
+    "order_notes": "string",
+    "delivery_method": "standard",
+    "is_blank": "no",
+    "individual_bags": "no",
+    "customer": {
+      "name": "string",
+      "email": "string",
+      "telephone": "string"
+    },
+    "address": {
+      "delivery_name": "string",
+      "company_name": "string",
+      "address_line_1": "string",
+      "address_line_2": "string",
+      "city": "string",
+      "county": "string",
+      "postcode": "string",
+      "country": "string",
+      "shipped_by": 0
+    },
+    "source": "string",
+    "products": {
+      "product": [
+        {
+          "sku": "string",
+          "quantity": 0,
+          "customs_unit_price": 13.42,
+          "logos": {
+            "logo": [
+              {
+                "unique_id": "string",
+                "file": "string",
+                "position": 0,
+                "width": 0,
+                "customisation_type": "dtg",
+                "type": "print",
+                "notes": "string",
+                "is_transparent": 0,
+                "is_cropped": 0,
+                "additional": true,
+                "colour": "string"
+              },
+              {
+                "customisation_id": 0,
+                "position": 0
+              }
+            ]
+          },
+          "title": "Custom product name for invoice",
+          "preview": "string",
+          "options": "string"
+        }
+      ]
+    },
+    "customs": {
+      "currency": "AUD",
+      "discounts": 12.21,
+      "shipping": 5.01,
+      "tax": 6.36,
+      "duty": 7.12,
+      "total_value": 41.23
+    }
+  }
+}
+
+```
+
+### Authentication
+You must provide a valid <code>api key</code>, when posting data.
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| api_key         | Yes      | Your API key provided to you when you sign up to use our API. |
+
+### Order
+Params needed in order block
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| order_id        | Yes      | Your generated order id from your ordering system. This is recorded against the order on our system. |
+| order_notes     | No       | Any additional comments related to the order you wish to pass through. |
+| delivery_method | Yes      | The delivery method for this order; standard options here are ‘standard’, ‘4day’ or ‘express’. |
+| is_blank        | No       | If this is an order without customisation, set this to ‘yes’ or ‘1’ (optional). Default is ‘no’. Blank products should not be ordered on the same order as customised products. |
+| individual_bags | No       | If you would like each item bagging in an individual poly bag, set this to ‘yes’ or ‘1’ (optional). Default is ‘no’. There is a charge applicable for this service; the charge can be found in the [pricing data feed](https://www.clothes2order.com/docs/data-feeds) in your account. More information on this service is available [here](https://www.clothes2order.com/pages/pricing).|
+| source          | No       | Optional field used on custom invoice inserts
+
+
+### Customer
+An order should include customer block. Params needed in customer block are as follow;
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| name            | Yes      | The name of the customer. |
+| email           | No       | The email address of the customer. By default, the Clothes2order API will not send any emails to the customer. |
+| telephone       | Yes      | The telephone number of the customer. |
+
+
+### Address
+An order should include an address block. Params needed in address block are as follow;
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| delivery_name   | No       | The name to appear on the delivery address, if not set, customer->name will be used. |
+| company_name    | No       | The company name to appear on the delivery address. |
+| address_line_1  | Yes      | The first line of the delivery address. |
+| address_line_2  | Yes      | The second line of the delivery address. |
+| city            | Yes      | The postal city of the delivery address. |
+| county          | No       | This is not needed for UK addresses, but for international addresses you can add a county/state here. |
+| postcode        | Yes      | The post code of the delivery address. |
+| country         | No       | Delivery country which will default to UK. Full country name or iso code can be provided. In case of mis-match, it will default to UK |
+| shipped_by      | No       | Optional courier id matched to account level settings (shipping_prefs). |
+
+
+### Products
+An order should include products block which in turn would specify the array of products of orders
+
+#### Product block
+Each product in products object should contain following params;
+
+| Param               | Required | Description |
+| :---                | ---      | ---         |
+| sku                 | No       | The unique SKU code for the product selected. Please see the [data feeds page](/docs/data-feeds/) for more information about our downloadable csv files. |
+| quantity            | No       | The company name to appear on the delivery address. |
+| customs_unit_price  | Yes      | The first line of the delivery address. |
+| title               | Yes      | The second line of the delivery address. |
+| preview             | Yes      | The postal city of the delivery address. |
+| options             | No       | This is not needed for UK addresses, but for international addresses you can add a county/state here. |
+
+#### Logos
+Each product s

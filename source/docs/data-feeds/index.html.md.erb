@@ -1,0 +1,62 @@
+---
+title: C2O Orders API
+
+toc_footers:
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+
+
+search: false
+
+code: false
+
+code_navigation: false
+
+code_clipboard: false
+
+---
+
+# Data Feeds
+
+There are several distinct data feeds in csv format available for the Clothes2order API. All can be downloaded from your account or automatically via the direct links provided in your account if required.
+
+## Stock and Product Information Feed
+
+This feed contains a list of all product SKU’s and stock information and is updated every 30 minutes. The feed is hosted on the Amazon S3 Cloud which means it can be fetched regularly by API users without restriction.
+The csv columns are listed below:
+
+| Column Name       | Description |
+| :---              | ---         |
+| Product Name      | The name of the product. |
+| Product Category  | The name of the primary category the product sits in on the Clothes2order site. |
+| Manufacturer Code | The manufacturer code for the product (if available). |
+| Colour            | The colour of the product for this SKU. |
+| Size              | The size of the product for this SKU. |
+| Is Core           | Indicates if this is a ‘core’ SKU. Core lines are generally our best sellers and are available for 24 hour dispatch. |
+| In Stock          | Indicates if this SKU is currently in stock or not. |
+| Approx Stock Level| Shows the approximate stock available for that SKU; either ‘0’, ‘1-49′, ’50-249′,’250-499’ or ‘500+’.|
+| Image URL         | A URL link to an image of the SKU in question. Any images used should be cached on your system. |
+| Allowed Customisations | A semi-colon (;) separated list of allowed customisations for this SKU. There are three types: ‘print’ (multi colour print), ‘print_1colour’ (single colour print), ’embroidery’ (embroidery). |
+| Allowed Positions | A semi-colon (;) separated list of allowed positions for this SKU. Please [click here](/docs/position-codes) for a full list of position codes. |
+
+## Pricing Feed
+
+This feed contains the specific pricing for your account for each SKU. As this feed
+contains pricing information you may not wish to disclose, it can be downloaded via
+a unique secure link provided in your account area. This feed only needs to be downloaded
+when your pricing levels change. The csv columns are listed below:
+
+|  Name       | Description |
+| :---              | ---         |
+| SKU               | The SKU code. This is the key part that needs to passed to the API to order a product. |
+| Price             | The actual price we charge you for the SKU, taking account of any custom pricing levels. Prices are in GBP and exclude VAT.|
+| VAT Rate          | The VAT rate that will be applied to each SKU. |
+
+## Position Code Feed
+
+This feed lists all available position codes, together with the maximum width available in each position.
+
+## Delivery Destinations Feed
+
+This feed lists all available delivery destinations as well as the associated delivery charges we will charge you.
+

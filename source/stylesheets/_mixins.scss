@@ -11,3 +11,12 @@
     margin-top: 10px;
   }
 }
+
+@mixin top-margin-0 {
+  margin-top: 0em;
+}
+
+
+@mixin footer-padding {
+  padding-bottom: 10em;
+}

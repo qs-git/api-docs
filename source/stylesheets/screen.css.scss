@@ -674,7 +674,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 // Custom styling
 ////////////////////////////////////////////////////////////////////////////////
-#http-headers,
+#introduction,
 #placing-an-order{
   font-weight: bolder;
   margin-bottom: 0;
@@ -711,8 +711,68 @@ html, body {
 
 
 ///////////////////////////
-/// Sign up page
+/// data feeds page
 //////////////////////////
-#registering-for-our-api{
-  @include header-with-border;
+.docs_data-feeds{
+
+  h2{
+    @include top-margin-0;
+  }
+
+  table{
+    thead{
+      border-top: 1px solid $drac-gray-light;
+      th{
+        border-right: 1px solid $drac-gray-light;
+      }
+      th:first-child{
+        border-left: 1px solid $drac-gray-light;
+      }
+    }
+    & td{
+      border-right: 1px solid $drac-gray-light;
+    }
+    & tr {
+      & > td:first-child{
+        border-left: 1px solid $drac-gray-light;
+      }
+    }
+
+    & tr:not(:last-child){
+      border-bottom: 1px solid $drac-gray-light;
+    }
+  }
+
 }
+
+///////////////////////////
+/// Position Code page
+//////////////////////////
+.docs_position-codes{
+
+  & .page-wrapper{
+
+    table {
+      display: table;
+      margin-left: 28px;
+      width: 55%;
+    }
+
+    h2{
+      @include top-margin-0;
+    }
+
+
+    & .content{
+      @include footer-padding;
+
+      & * {
+        margin-right: 45%;
+      }
+    }
+
+  }
+
+}
+
+
