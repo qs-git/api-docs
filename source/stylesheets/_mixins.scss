@@ -1,0 +1,13 @@
+@mixin header-with-border {
+  color: #3d96ed;
+  position: relative;
+  font-weight: bolder;
+  &:after{
+    content: "";
+    display: block;
+    width: 50%;
+    background-color: #b1cfec;
+    height: 5px;
+    margin-top: 10px;
+  }
+}

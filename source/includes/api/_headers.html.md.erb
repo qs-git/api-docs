@@ -1,0 +1,23 @@
+# HTTP Headers
+
+There are various HTTP headers that can be used when sending data to the Clothes2order API and in addition, different response
+headers can be sent back to you depending on the request.
+
+### Submit Headers
+
+The key header to note here is the ‘Accept’ header; this allows you to use the API with either XML or JSON.
+
+| Parameter | Options | Default   | Description |
+| :---      | ------- |-----------|-------------|
+| Accept    | application/xml or application/json | application/xml | Determines whether XML or JSON should be used.|
+| Test-Mode | true or false                       | false | Once you have been set live on the API, you can use this header to force a test transaction. |
+
+
+### Response Headers
+Instead of having to check the OK/ERROR status in the content of the response, the HTTP
+header code can also be checked to determine if a request was successful or not.
+
+| HTTP Response Code | Description |
+| :---               | ---         |
+| 200                | Request was received successfully. |
+| 400                | There was an error with your request. In the case of order submission, your order hasn’t been accepted. |

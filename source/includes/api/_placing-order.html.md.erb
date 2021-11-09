@@ -1,0 +1,234 @@
+# Placing an Order
+This page details the technical specification for posting an order to the Clothes2order API. There are no further steps required to place an order;
+once you submit a request as detailed below, the order is instantly generated on our system ready for processing.
+
+```php
+// Posting XML data
+
+$ch = curl_init(API_URL);
+curl_setopt($ch, CURLOPT_HTTPHEADER,
+ array('Content-Type: application/xml',
+       'Accept: application/xml'
+       )
+);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+$ch_result = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+//Get response
+$obj = simplexml_load_string($ch_result);
+
+//Check HTTP status
+if ($http_code == 200) {
+ //All OK
+ echo 'All seems OK: ' . $obj->status->msg  . "<br />\n";
+
+ //Lets echo some values
+ echo 'Clothes2order order ID: ' . $obj->order_details->order_id . "<br />\n";
+ echo 'This order has cost you: &pound;' . $obj->order_details->net_order_value . "<br />\n";
+ echo 'Estimated dispatch date: ' . $obj->order_details->est_dispatch_date . "<br />\n";
+
+ if (sizeof($obj->warnings->warning) > 0) {
+  foreach ((array)$obj->warnings->warning as $warning) {
+   echo 'Warning: ' . $warning . "<br />\n";
+  }
+ }
+
+ if (sizeof($obj->test_msgs->msg) > 0) {
+  foreach ((array)$obj->test_msgs->msg as $test_msg) {
+   echo 'Test message: ' . $test_msg . "<br />\n";
+  }
+ }
+} elseif ($http_code == 400) {
+ //There was an error
+ echo 'Error occured: ' . $obj->status->msg  . "<br />\n";
+}
+
+exit;
+
+```
+
+
+```json
+{
+    "api_key": "Your API Key",
+    "order": {
+        "order_id": "123456",
+        "order_notes": "Any extra information here",
+        "delivery_method": "standard"
+    },
+    "customer": {
+        "name": "Name Here",
+        "email": "email@email.com",
+        "telephone": "0161123456"
+    },
+    "address": {
+        "delivery_name": "Name",
+        "company_name": "Quayside Clothing Ltd",
+        "address_line_1": "Unit 9 Wheel Forge Way",
+        "address_line_2": "Trafford Park",
+        "city": "Manchester",
+        "postcode": "M17 1EH",
+        "country": "United Kingdom"
+    },
+    "products": {
+        "product": [
+            {
+                "sku": "594-117-15",
+                "quantity": "2",
+                "logos": {
+                    "logo": [
+                        {
+                            "unique_id": "TEST_02",
+                            "file": "https:\/\/dl.dropboxusercontent.com\/u\/111\/1.png",
+                            "position": "3",
+                            "width": "8",
+                            "type": "print"
+                        },
+                        {
+                            "unique_id": "TEST_03",
+                            "file": "https:\/\/dl.dropboxusercontent.com\/u\/111\/2.png",
+                            "position": "5",
+                            "width": "12",
+                            "type": "print"
+                        }
+                    ]
+                }
+            },
+            {
+                "sku": "594-117-14",
+                "quantity": "1",
+                "logos": {
+                    "logo": [
+                        {
+                            "unique_id": "TEST_04",
+                            "file": "https:\/\/dl.dropboxusercontent.com\/u\/111\/3.png",
+                            "position": "5",
+                            "width": "10",
+                            "type": "embroidery"
+                        },
+                        {
+                            "unique_id": "",
+                            "file": "https:\/\/dl.dropboxusercontent.com\/u\/111\/4.png",
+                            "position": "9",
+                            "width": "25",
+                            "type": "print_1colour"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+```
+
+
+```xml
+<xml>
+ <api_key>Your API Key</api_key>
+ <order>
+  <order_id>123456</order_id>
+  <order_notes><![CDATA[Any extra information here]]></order_notes>
+  <delivery_method>standard</delivery_method>
+ </order>
+ <customer>
+  <name>Name Here</name>
+  <email>email@email.com</email>
+  <telephone>0161123456</telephone>
+ </customer>
+ <address>
+  <delivery_name>Name</delivery_name>
+  <company_name>Quayside Clothing Ltd</company_name>
+  <address_line_1>Unit 9 Wheel Forge Way</address_line_1>
+  <address_line_2>Trafford Park</address_line_2>
+  <city>Manchester</city>
+  <postcode>M17 1EH</postcode>
+  <country>United Kingdom</country>
+ </address>
+ <products>
+  <product>
+   <sku>594-117-15</sku>
+   <quantity>2</quantity>
+   <logos>
+    <logo>
+     <unique_id>TEST_02</unique_id>
+     <file><![CDATA[https://dl.dropboxusercontent.com/u/111/1.png]]></file>
+     <position>3</position>
+     <width>8</width>
+     <type>print</type>
+    </logo>
+    <logo>
+     <unique_id>TEST_03</unique_id>
+     <file><![CDATA[https://dl.dropboxusercontent.com/u/111/2.png]]></file>
+     <position>5</position>
+     <width>12</width>
+     <type>print</type>
+    </logo>
+   </logos>
+  </product>
+    <product>
+   <sku>594-117-14</sku>
+   <quantity>1</quantity>
+   <logos>
+    <logo>
+     <unique_id>TEST_04</unique_id>
+     <file><![CDATA[https://dl.dropboxusercontent.com/u/111/3.png]]></file>
+     <position>5</position>
+     <width>10</width>
+     <type>embroidery</type>
+    </logo>
+    <logo>
+     <unique_id></unique_id>
+     <file><![CDATA[https://dl.dropboxusercontent.com/u/111/4.png]]></file>
+     <position>9</position>
+     <width>25</width>
+     <type>print_1colour</type>
+    </logo>
+   </logos>
+  </product>
+ </products>
+</xml>
+```
+
+### Post params
+Following is a description of post params.
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| api_key         | Yes      | Your API key provided to you when you sign up to use our API. |
+
+#### Order Block
+Params needed in order block
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| order_id        | Yes      | Your generated order id from your ordering system. This is recorded against the order on our system. |
+| order_notes     | No       | Any additional comments related to the order you wish to pass through. |
+| delivery_method | Yes      | The delivery method for this order; standard options here are ‘standard’, ‘4day’ or ‘express’. |
+| is_blank        | No       | If this is an order without customisation, set this to ‘yes’ or ‘1’ (optional). Default is ‘no’. Blank products should not be ordered on the same order as customised products. |
+| individual_bags | No       | 	If you would like each item bagging in an individual poly bag, set this to ‘yes’ or ‘1’ (optional). Default is ‘no’. There is a charge applicable for this service; the charge can be found in the [pricing data feed](https://www.clothes2order.com/docs/data-feeds) in your account. More information on this service is available [here](https://www.clothes2order.com/pages/pricing).|
+
+
+#### Customer Block
+Params needed in customer block
+
+| Param           | Required | Description |
+| :---            | ---      | ---         |
+| name            | Yes      | The name of the customer. |
+| email           | No       | The email address of the customer. By default, the Clothes2order API will not send any emails to the customer. |
+| telephone       | Yes      | The telephone number of the customer. |
+| delivery_name   | No       | The name to appear on the delivery address, if not set, customer->name will be used. |
+| company_name    | No       | The company name to appear on the delivery address. |
+| address_line_1  | Yes      | The first line of the delivery address. |
+| address_line_2  | Yes      | The second line of the delivery address. |
+| city            | Yes      | The postal city of the delivery address. |
+| county          | No       | This is not needed for UK addresses, but for international addresses you can add a county/state here. |
+| postcode        | Yes      | The post code of the delivery address. |
+
+
