@@ -781,4 +781,23 @@ html, body {
 
 }
 
+///////////////////////////
+/// Version 1 page
+//////////////////////////
 
+.api_v1 {
+  .content{
+    @include footer-padding;
+  }
+}
+
+
+///////////////////////////
+/// Version 2 page
+//////////////////////////
+
+.api_v2 {
+  .content{
+    @include footer-padding;
+  }
+}
