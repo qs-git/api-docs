@@ -46,7 +46,7 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
-    <%= javascript_include_tag  "main" %>
+    <%= javascript_include_tag  "app" %>
     <% if current_page.data.code_clipboard %>
       <script>
         $(function() { setupCodeCopy(); });
@@ -86,6 +86,13 @@ under the License.
         </div>
         <ul class="search-results"></ul>
       <% end %>
+
+      <% if current_page.data.back_btn %>
+      <div class="back-container">
+        <a href="" id="go_back_link">Go back</a>
+      </div>
+      <% end %>
+
       <%# Side navigation %>
       <ul id="toc" class="nav toc-list-h1">
         <% if current_page.data.code_navigation %>

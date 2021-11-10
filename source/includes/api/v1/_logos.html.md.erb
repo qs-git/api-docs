@@ -1,0 +1,18 @@
+####logos
+
+Each product will also include an array of product customisations specified as logos. Each logo i.e. customisation should contain
+following parameters
+
+| Param               | Required | Description |
+| :---                | ---      | ---         |
+| unique_id           | No       | If you have customisations that can be purchased multiple times on different orders, setting a unique id will prevent the API having the pull the logo file each time an order is placed (optional). In addition, once the setup charge has been paid for a customisation in the specified size, using the same unique_id will automatically ensure you are not charged a setup charge again for that customisation (assuming the size has not changed). |
+| file                | Yes      | The full URL of the artwork file. This must be set or the order will not be accepted, even if the unique_id is set and the file has been used before. The file should be as you wish it to be produced and adhear to our standard [artwork guidelines](https://www.clothes2order.com/pages/artwork-guidelines). |
+| position            | Yes      | The position code for where the customisation should be placed. See the [position codes page](/docs/position-codes) for a full list of position codes. |
+| width               | Yes      | Width image should be produced in cm. If not set or greater than the maximum size for a position, the maximum size will be used. See the [position codes page](/docs/position-codes) for a full list of maximum sizes. |
+| type                | Yes      | Either ‘print’ (multi colour print), ‘print_1colour’ (single colour print) or ’embroidery’ (embroidery). |
+| customisation_type  | Yes      | The method in which a customisation is to be produced. Accepted values are dtg, vinyl, versacamm, flock, embroidery. |
+| notes               | No       | Any comments you would like to be attached to customisation. |
+| is_transparent      | Yes      | Accepted values are either 0 or 1. |
+| is_cropped          | Yes      | Accepted values are either 0 or 1. |
+| colour              | No       | Colour to use to produce customisation. Cannot be overwritten |
+
