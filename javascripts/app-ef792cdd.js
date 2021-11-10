@@ -1,0 +1,1 @@
+$(function(){$("#go_back_link").on("click",function(n){n.preventDefault(),history.back()})});

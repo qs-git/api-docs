@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="../../images/favicon-c0a70628.ico" rel="icon" type="image/ico" />
+    <title>C2O Orders API</title>
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="../../stylesheets/screen-a7fabb72.css" rel="stylesheet" media="screen" />
+    <link href="../../stylesheets/print-b4b78de9.css" rel="stylesheet" media="print" />
+      <script src="../../javascripts/all_nosearch-ea811c3e.js"></script>
+    <script src="../../javascripts/app-ef792cdd.js"></script>
+  </head>
+  <body class="docs docs_data-feeds docs_data-feeds_index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        <img src="../../images/navbar-6ad8e2f4.svg" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <div class="image-logo">
+        <a href="/fiber/">
+          <img src="../../images/logo-40d50c3f.png" class="logo" alt="" />
+        </a>
+      </div>
+
+      <div class="back-container">
+        <a href="" id="go_back_link">Go back</a>
+      </div>
+
+      <ul id="toc" class="nav toc-list-h1">
+          <li class="nav__item nav__item-title">
+            <a href="" class="toc-link nav__item-title__link">Getting Started</a>
+            <ul class="nav__block">
+              <li class="nav__item">
+                <a href="/fiber/" class="toc-h2 toc-link nav__item__link">Api Overview</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav__item nav__item-title">
+            <a href="" class="toc-link nav__item-title__link">APIS</a>
+            <ul class="nav__block">
+              <li class="nav__item">
+                <a href="/fiber/api/v1/" class="toc-h2 toc-link nav__item__link">Version 1</a>
+              </li>
+              <li class="nav__item">
+                <a href="/fiber/api/v2/" class="toc-h2 toc-link nav__item__link">Version 2</a>
+              </li>
+            </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id='data-feeds'>Data Feeds</h1>
+<p>There are several distinct data feeds in csv format available for the Clothes2order API. All can be downloaded from your account or automatically via the direct links provided in your account if required.</p>
+<h2 id='stock-and-product-information-feed'>Stock and Product Information Feed</h2>
+<p>This feed contains a list of all product SKU’s and stock information and is updated every 30 minutes. The feed is hosted on the Amazon S3 Cloud which means it can be fetched regularly by API users without restriction.
+The csv columns are listed below:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Column Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Product Name</td>
+<td>The name of the product.</td>
+</tr>
+<tr>
+<td style="text-align: left">Product Category</td>
+<td>The name of the primary category the product sits in on the Clothes2order site.</td>
+</tr>
+<tr>
+<td style="text-align: left">Manufacturer Code</td>
+<td>The manufacturer code for the product (if available).</td>
+</tr>
+<tr>
+<td style="text-align: left">Colour</td>
+<td>The colour of the product for this SKU.</td>
+</tr>
+<tr>
+<td style="text-align: left">Size</td>
+<td>The size of the product for this SKU.</td>
+</tr>
+<tr>
+<td style="text-align: left">Is Core</td>
+<td>Indicates if this is a ‘core’ SKU. Core lines are generally our best sellers and are available for 24 hour dispatch.</td>
+</tr>
+<tr>
+<td style="text-align: left">In Stock</td>
+<td>Indicates if this SKU is currently in stock or not.</td>
+</tr>
+<tr>
+<td style="text-align: left">Approx Stock Level</td>
+<td>Shows the approximate stock available for that SKU; either ‘0’, ‘1-49′, ’50-249′,’250-499’ or ‘500+’.</td>
+</tr>
+<tr>
+<td style="text-align: left">Image URL</td>
+<td>A URL link to an image of the SKU in question. Any images used should be cached on your system.</td>
+</tr>
+<tr>
+<td style="text-align: left">Allowed Customisations</td>
+<td>A semi-colon (;) separated list of allowed customisations for this SKU. There are three types: ‘print’ (multi colour print), ‘print_1colour’ (single colour print), ’embroidery’ (embroidery).</td>
+</tr>
+<tr>
+<td style="text-align: left">Allowed Positions</td>
+<td>A semi-colon (;) separated list of allowed positions for this SKU. Please <a href="/docs/position-codes">click here</a> for a full list of position codes.</td>
+</tr>
+</tbody></table>
+<h2 id='pricing-feed'>Pricing Feed</h2>
+<p>This feed contains the specific pricing for your account for each SKU. As this feed
+contains pricing information you may not wish to disclose, it can be downloaded via
+a unique secure link provided in your account area. This feed only needs to be downloaded
+when your pricing levels change. The csv columns are listed below:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">SKU</td>
+<td>The SKU code. This is the key part that needs to passed to the API to order a product.</td>
+</tr>
+<tr>
+<td style="text-align: left">Price</td>
+<td>The actual price we charge you for the SKU, taking account of any custom pricing levels. Prices are in GBP and exclude VAT.</td>
+</tr>
+<tr>
+<td style="text-align: left">VAT Rate</td>
+<td>The VAT rate that will be applied to each SKU.</td>
+</tr>
+</tbody></table>
+<h2 id='position-code-feed'>Position Code Feed</h2>
+<p>This feed lists all available position codes, together with the maximum width available in each position.</p>
+<h2 id='delivery-destinations-feed'>Delivery Destinations Feed</h2>
+<p>This feed lists all available delivery destinations as well as the associated delivery charges we will charge you.</p>
+
+      </div>
+    </div>
+  </body>
+</html>
