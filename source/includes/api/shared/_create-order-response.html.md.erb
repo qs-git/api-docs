@@ -1,0 +1,68 @@
+# Response
+
+The API will respond with JSON once an order is submitted.
+
+```json
+
+{
+    "status": {
+        "code": "OK",
+        "msg": "Data accepted from Your Company Name. API Mode: LIVE"
+    },
+    "order_details": {
+        "order_id": "999000",
+        "net_order_value": "26.06",
+        "gross_order_value": "31.27",
+        "est_dispatch_date": "13\/11\/2013"
+    },
+    "warnings": {
+        "warning": [
+            "Your postcode is not a valid UK postcode",
+            "Current stock levels are below the ordered quantity for sku 203-1-13"
+        ]
+    },
+    "test_msgs": {
+       "description" : "description of test message",
+       "msg" : "test mode message"
+    }
+}
+
+```
+
+### Success Response
+
+If order is placed successfully then a success response is returned. Following is a breakdown of
+response fields
+
+| Node              | Description |
+| :---              | ---         |
+| code              | ‘OK’. You can also check the HTTP response code header; ‘OK’ returns 200.|
+| msg               | Success Message |
+| order_id          | The Clothes2order order number for the placed order. |
+| net_order_value   | The net cost you have been charged for the order. |
+| gross_order_value | The gross cost you have been charged for the order. |
+| est_dispatch_date | The estimated dispatch date for your order.|
+| warning           | Any warning messages about your order will be displayed here |
+| msg               | If you are running the API in test mode, testing results will be displayed here. |
+
+
+```json
+
+{
+    "status": {
+        "code": "ERROR",
+        "msg": "Detailed error message"
+    }
+}
+
+```
+
+### Error Response
+
+In case of any errors, an error response is returned. Following is a breakdown of
+response fields
+
+| Node              | Description |
+| :---              | ---         |
+| code              | ‘ERROR’. If a fatal error is reported here, the order will not be accepted. You can also check the HTTP response code header; ‘ERROR’ returns 400.|
+| msg               | Detailed error message |
