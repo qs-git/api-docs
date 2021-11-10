@@ -331,6 +331,17 @@
                     </li>
                 </ul>
             </li>
+            <li>
+              <a href="#response" class="toc-h1 toc-link" data-title="Response">Response</a>
+                <ul class="toc-list-h2">
+                    <li>
+                      <a href="#success-response" class="toc-h2 toc-link" data-title="Success Response">Success Response</a>
+                    </li>
+                    <li>
+                      <a href="#error-response" class="toc-h2 toc-link" data-title="Error Response">Error Response</a>
+                    </li>
+                </ul>
+            </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
@@ -627,6 +638,106 @@ following parameters</p>
 <td style="text-align: left">postion_id</td>
 <td>Yes</td>
 <td>position id for customisation</td>
+</tr>
+</tbody></table>
+
+<h1 id='response'>Response</h1>
+
+<p>The API will respond with JSON once an order is submitted.</p>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data accepted from Your Company Name. API Mode: LIVE&quot;</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">&quot;order_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;order_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;999000&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;net_order_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;26.06&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;gross_order_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;31.27&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;est_dispatch_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;13</span><span class="se">\/</span><span class="s2">11</span><span class="se">\/</span><span class="s2">2013&quot;</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">&quot;warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;warning&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">&quot;Your postcode is not a valid UK postcode&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;Current stock levels are below the ordered quantity for sku 203-1-13&quot;</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">&quot;test_msgs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nl">&quot;description&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;description of test message&quot;</span><span class="p">,</span><span class="w">
+       </span><span class="nl">&quot;msg&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test mode message&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h3 id='success-response'>Success Response</h3>
+<p>If order is placed successfully then a success response is returned. Following is a breakdown of
+response fields</p></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Node</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td>‘OK’. You can also check the HTTP response code header; ‘OK’ returns 200.</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td>Success Message</td>
+</tr>
+<tr>
+<td style="text-align: left">order_id</td>
+<td>The Clothes2order order number for the placed order.</td>
+</tr>
+<tr>
+<td style="text-align: left">net_order_value</td>
+<td>The net cost you have been charged for the order.</td>
+</tr>
+<tr>
+<td style="text-align: left">gross_order_value</td>
+<td>The gross cost you have been charged for the order.</td>
+</tr>
+<tr>
+<td style="text-align: left">est_dispatch_date</td>
+<td>The estimated dispatch date for your order.</td>
+</tr>
+<tr>
+<td style="text-align: left">warning</td>
+<td>Any warning messages about your order will be displayed here</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td>If you are running the API in test mode, testing results will be displayed here.</td>
+</tr>
+</tbody></table>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Detailed error message&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h3 id='error-response'>Error Response</h3>
+<p>In case of any errors, an error response is returned. Following is a breakdown of
+response fields</p></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Node</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td>‘ERROR’. If a fatal error is reported here, the order will not be accepted. You can also check the HTTP response code header; ‘ERROR’ returns 400.</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td>Detailed error message</td>
 </tr>
 </tbody></table>
 
