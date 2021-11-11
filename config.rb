@@ -55,7 +55,7 @@ configure :build do
 end
 
 #Custom variables
-set :http_host, '/fiber/' # set the url prefix i.e. github repo name
+set :http_host, '/api-docs/' # set the url prefix i.e. github repo name
 
 configure :development do
   set :http_host, '/'
