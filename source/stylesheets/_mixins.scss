@@ -2,7 +2,7 @@
   color: #3d96ed;
   position: relative;
   font-weight: bolder;
-  &:after{
+  &:after {
     content: "";
     display: block;
     width: 50%;
@@ -16,7 +16,16 @@
   margin-top: 0em;
 }
 
-
 @mixin footer-padding {
   padding-bottom: 10em;
+}
+
+@mixin badge {
+  font-size: 12px;
+  margin-left: 1em;
+  background: $drac-pink;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-weight: bold;
 }

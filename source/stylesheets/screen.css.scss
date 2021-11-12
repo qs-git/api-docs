@@ -347,7 +347,7 @@ html, body {
 
   // the div is the tocify hidden div for placeholding stuff
   &>h1, &>h2, &>div {
-    clear:both;
+    clear:none;
   }
 
   h1 {
@@ -675,10 +675,22 @@ html, body {
 // Custom styling
 ////////////////////////////////////////////////////////////////////////////////
 
+
+////////////////////////
+// General Styles
+///////////////////////
+
 .back-container{
   padding: 1em;
 }
 
+h1 {
+ display: flex !important;
+ align-items: center;
+}
+.verb{
+ @include badge;
+}
 
 #introduction,
 #placing-an-order{
@@ -801,3 +813,4 @@ html, body {
     @include footer-padding;
   }
 }
+

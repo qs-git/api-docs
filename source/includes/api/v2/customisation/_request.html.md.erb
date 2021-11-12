@@ -1,0 +1,35 @@
+# Customisation <span class="verb">POST</span>
+
+A customisation can be created by posting required data as shown on the right.
+Details of parameters can be found as below
+
+<aside class="notice">
+  Endpoint : <code>https://www.clothes2order.com/api/v2/customisation</code>
+</aside>
+
+
+```json
+
+{
+  "data": {
+    "type": "print",
+    "customisation_type": "dtg",
+    "width": 0,
+    "file_url": "string",
+    "name": "string",
+    "colour": "string"
+  }
+}
+
+````
+
+## Customisation Params
+
+| Param               | Required | Description |
+| :---                | ---      | ---         |
+| type                | Yes      | Needs to be one of values from list [print, print_1colour, embrodery]. |
+| customisation_type  | Yes      | Needs to be one of the values from list [dtg, vinyl, versacamm, flock, embroidery]. |
+| width               | Yes      | Must be valid for type. |
+| file_url            | Yes      | Url for the customisations original file. |
+| name                | No       | Name for the customisation. If omitted one will be generated|
+| colour              | No       | Colour to be used to produce customisation. Cannot be overwritten. |

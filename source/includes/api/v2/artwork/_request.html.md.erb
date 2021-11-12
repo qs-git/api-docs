@@ -1,0 +1,36 @@
+# Artwork <span class="verb">POST</span>
+
+An artwork can be created for a customisation by posting required data as shown on the right.
+Details of parameters can be found as below
+
+<aside class="notice">
+  Endpoint : <code>https://www.clothes2order.com/api/v2/customisation/{id}/artwork</code>
+</aside>
+
+
+```json
+
+{
+  "data": {
+    "recipe_type": "cap",
+    "stitch_count": 0,
+    "dst_url": "string",
+    "proof_pdf_url": "string",
+    "thread_colours": [
+      0
+    ]
+  }
+}
+
+````
+
+## Artwork Params
+
+| Param               | Required | Description |
+| :---                | ---      | ---         |
+| recipe_type         | Yes      | Needs to be one of values from list [cap, standard, fleece, sewout, knit]. |
+| stitch_count        | Yes      | Count for the stitches |
+| dst_url             | Yes      | Url for dst, validation will be to check for a 200 using HEAD. |
+| proof_pdf_url       | Yes      | Url for pdf, validation will be to check for a 200 using HEAD. |
+| name                | Yes      | Name for the customisation. If omitted one will be generated|
+| colour              | Yes      | Array of maria colours. Will be stored and used to generate csv. |
