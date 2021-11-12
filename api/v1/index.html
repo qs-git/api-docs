@@ -281,7 +281,7 @@
   color: #859900;
 }
     </style>
-    <link href="../../stylesheets/screen-b5f94a99.css" rel="stylesheet" media="screen" />
+    <link href="../../stylesheets/screen-642b6c50.css" rel="stylesheet" media="screen" />
     <link href="../../stylesheets/print-b4b78de9.css" rel="stylesheet" media="print" />
       <script src="../../javascripts/all-e9bde216.js"></script>
     <script src="../../javascripts/app-ef792cdd.js"></script>
@@ -312,7 +312,7 @@
 
       <ul id="toc" class="nav toc-list-h1">
             <li>
-              <a href="#placing-an-order" class="toc-h1 toc-link" data-title="Placing an Order">Placing an Order</a>
+              <a href="#order-post" class="toc-h1 toc-link" data-title="Order POST">Order <span class="verb">POST</span></a>
                 <ul class="toc-list-h2">
                     <li>
                       <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
@@ -329,16 +329,8 @@
                     <li>
                       <a href="#products" class="toc-h2 toc-link" data-title="Products">Products</a>
                     </li>
-                </ul>
-            </li>
-            <li>
-              <a href="#response" class="toc-h1 toc-link" data-title="Response">Response</a>
-                <ul class="toc-list-h2">
                     <li>
-                      <a href="#success-response" class="toc-h2 toc-link" data-title="Success Response">Success Response</a>
-                    </li>
-                    <li>
-                      <a href="#error-response" class="toc-h2 toc-link" data-title="Error Response">Error Response</a>
+                      <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
                     </li>
                 </ul>
             </li>
@@ -351,13 +343,13 @@
     <div class="page-wrapper">
         <div class="dark-box"></div>
       <div class="content">
-        <h1 id='placing-an-order'>Placing an Order</h1>
+        <h1 id='order-post'>Order <span class="verb">POST</span></h1>
 
 <p>A sales order can be created by providing data as shown on the right. Details about each
 parameter can be found as follow;</p>
 
 <aside class="notice">
-  Base URL: <code>https://www.clothes2order.com/api/v1</code>
+  Endpoint : <code>https://www.clothes2order.com/api/v1/create-post</code>
 </aside>
 
 <aside class="warning">
@@ -690,7 +682,7 @@ following parameters</p>
 </tr>
 </tbody></table>
 
-<h1 id='response'>Response</h1>
+<h2 id='response'>Response</h2>
 
 <p>The API will respond with JSON once an order is submitted.</p>
 

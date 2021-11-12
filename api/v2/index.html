@@ -281,7 +281,7 @@
   color: #859900;
 }
     </style>
-    <link href="../../stylesheets/screen-b5f94a99.css" rel="stylesheet" media="screen" />
+    <link href="../../stylesheets/screen-642b6c50.css" rel="stylesheet" media="screen" />
     <link href="../../stylesheets/print-b4b78de9.css" rel="stylesheet" media="print" />
       <script src="../../javascripts/all-e9bde216.js"></script>
     <script src="../../javascripts/app-ef792cdd.js"></script>
@@ -312,7 +312,7 @@
 
       <ul id="toc" class="nav toc-list-h1">
             <li>
-              <a href="#placing-an-order" class="toc-h1 toc-link" data-title="Placing an Order">Placing an Order</a>
+              <a href="#order-post" class="toc-h1 toc-link" data-title="Order POST">Order <span class="verb">POST</span></a>
                 <ul class="toc-list-h2">
                     <li>
                       <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
@@ -329,16 +329,30 @@
                     <li>
                       <a href="#products" class="toc-h2 toc-link" data-title="Products">Products</a>
                     </li>
+                    <li>
+                      <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                    </li>
                 </ul>
             </li>
             <li>
-              <a href="#response" class="toc-h1 toc-link" data-title="Response">Response</a>
+              <a href="#customisation-post" class="toc-h1 toc-link" data-title="Customisation POST">Customisation <span class="verb">POST</span></a>
                 <ul class="toc-list-h2">
                     <li>
-                      <a href="#success-response" class="toc-h2 toc-link" data-title="Success Response">Success Response</a>
+                      <a href="#customisation-params" class="toc-h2 toc-link" data-title="Customisation Params">Customisation Params</a>
                     </li>
                     <li>
-                      <a href="#error-response" class="toc-h2 toc-link" data-title="Error Response">Error Response</a>
+                      <a href="#customisation-response" class="toc-h2 toc-link" data-title="Customisation Response">Customisation Response</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+              <a href="#artwork-post" class="toc-h1 toc-link" data-title="Artwork POST">Artwork <span class="verb">POST</span></a>
+                <ul class="toc-list-h2">
+                    <li>
+                      <a href="#artwork-params" class="toc-h2 toc-link" data-title="Artwork Params">Artwork Params</a>
+                    </li>
+                    <li>
+                      <a href="#artwork-response" class="toc-h2 toc-link" data-title="Artwork Response">Artwork Response</a>
                     </li>
                 </ul>
             </li>
@@ -351,13 +365,13 @@
     <div class="page-wrapper">
         <div class="dark-box"></div>
       <div class="content">
-        <h1 id='placing-an-order'>Placing an Order</h1>
+        <h1 id='order-post'>Order <span class="verb">POST</span></h1>
 
 <p>A sales order can be created by providing data as shown on the right. Details about each
 parameter can be found as follow;</p>
 
 <aside class="notice">
-  Base URL: <code>https://www.clothes2order.com/api/v2</code>
+  Endpoint : <code>https://www.clothes2order.com/api/v1/create-post</code>
 </aside>
 
 <aside class="warning">
@@ -641,7 +655,7 @@ following parameters</p>
 </tr>
 </tbody></table>
 
-<h1 id='response'>Response</h1>
+<h2 id='response'>Response</h2>
 
 <p>The API will respond with JSON once an order is submitted.</p>
 
@@ -710,6 +724,239 @@ response fields</p></p>
 <tr>
 <td style="text-align: left">msg</td>
 <td>If you are running the API in test mode, testing results will be displayed here.</td>
+</tr>
+</tbody></table>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Detailed error message&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h3 id='error-response'>Error Response</h3>
+<p>In case of any errors, an error response is returned. Following is a breakdown of
+response fields</p></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Node</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td>‘ERROR’. If a fatal error is reported here, the order will not be accepted. You can also check the HTTP response code header; ‘ERROR’ returns 400.</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td>Detailed error message</td>
+</tr>
+</tbody></table>
+
+<h1 id='customisation-post'>Customisation <span class="verb">POST</span></h1>
+
+<p>A customisation can be created by posting required data as shown on the right.
+Details of parameters can be found as below</p>
+
+<aside class="notice">
+  Endpoint : <code>https://www.clothes2order.com/api/v2/customisation</code>
+</aside>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;print&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;customisation_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dtg&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;file_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;colour&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h2 id='customisation-params'>Customisation Params</h2>
+<table><thead>
+<tr>
+<th style="text-align: left">Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">type</td>
+<td>Yes</td>
+<td>Needs to be one of values from list [print, print_1colour, embrodery].</td>
+</tr>
+<tr>
+<td style="text-align: left">customisation_type</td>
+<td>Yes</td>
+<td>Needs to be one of the values from list [dtg, vinyl, versacamm, flock, embroidery].</td>
+</tr>
+<tr>
+<td style="text-align: left">width</td>
+<td>Yes</td>
+<td>Must be valid for type.</td>
+</tr>
+<tr>
+<td style="text-align: left">file_url</td>
+<td>Yes</td>
+<td>Url for the customisations original file.</td>
+</tr>
+<tr>
+<td style="text-align: left">name</td>
+<td>No</td>
+<td>Name for the customisation. If omitted one will be generated</td>
+</tr>
+<tr>
+<td style="text-align: left">colour</td>
+<td>No</td>
+<td>Colour to be used to produce customisation. Cannot be overwritten.</td>
+</tr>
+</tbody></table></p>
+
+<h2 id='customisation-response'>Customisation Response</h2>
+
+<p>The API will respond with JSON once an order is submitted.</p>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h3 id='success-response'>Success Response</h3>
+<p>If order is placed successfully then a success response is returned. Following is a breakdown of
+response fields</p></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Node</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td>customisation id for the created object.</td>
+</tr>
+</tbody></table>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="nl">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Detailed error message&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h3 id='error-response'>Error Response</h3>
+<p>In case of any errors, an error response is returned. Following is a breakdown of
+response fields</p></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Node</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td>‘ERROR’. If a fatal error is reported here, the order will not be accepted. You can also check the HTTP response code header; ‘ERROR’ returns 400.</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td>Detailed error message</td>
+</tr>
+</tbody></table>
+
+<h1 id='artwork-post'>Artwork <span class="verb">POST</span></h1>
+
+<p>An artwork can be created for a customisation by posting required data as shown on the right.
+Details of parameters can be found as below</p>
+
+<aside class="notice">
+  Endpoint : <code>https://www.clothes2order.com/api/v2/customisation/{id}/artwork</code>
+</aside>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;recipe_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cap&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;stitch_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;dst_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;proof_pdf_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;thread_colours&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h2 id='artwork-params'>Artwork Params</h2>
+<table><thead>
+<tr>
+<th style="text-align: left">Param</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">recipe_type</td>
+<td>Yes</td>
+<td>Needs to be one of values from list [cap, standard, fleece, sewout, knit].</td>
+</tr>
+<tr>
+<td style="text-align: left">stitch_count</td>
+<td>Yes</td>
+<td>Count for the stitches</td>
+</tr>
+<tr>
+<td style="text-align: left">dst_url</td>
+<td>Yes</td>
+<td>Url for dst, validation will be to check for a 200 using HEAD.</td>
+</tr>
+<tr>
+<td style="text-align: left">proof_pdf_url</td>
+<td>Yes</td>
+<td>Url for pdf, validation will be to check for a 200 using HEAD.</td>
+</tr>
+<tr>
+<td style="text-align: left">name</td>
+<td>Yes</td>
+<td>Name for the customisation. If omitted one will be generated</td>
+</tr>
+<tr>
+<td style="text-align: left">colour</td>
+<td>Yes</td>
+<td>Array of maria colours. Will be stored and used to generate csv.</td>
+</tr>
+</tbody></table></p>
+
+<h2 id='artwork-response'>Artwork Response</h2>
+
+<p>The API will respond with JSON once an order is submitted.</p>
+
+<p><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"></p>
+
+<p></span></code></pre></div><h3 id='success-response'>Success Response</h3>
+<p>If order is placed successfully then a success response is returned. Following is a breakdown of
+response fields</p></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Node</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td>customisation id for the created object.</td>
 </tr>
 </tbody></table>
 
